@@ -30,6 +30,8 @@ class Monster extends Phaser.Scene {
 
         this.LeftAntX = this.bodyX - 40;
         this.LeftAntY = this.bodyY - 130;
+
+        
     }
 
     // Use preload to load art and sound assets before the scene starts running.
@@ -68,9 +70,11 @@ class Monster extends Phaser.Scene {
         my.sprite.RightAntenna = this.add.sprite(this.RightAntX, this.RightAntY, "monsterParts", "detail_blue_antenna_large.png");
         my.sprite.LeftAntenna = this.add.sprite(this.LeftAntX, this.LeftAntY, "monsterParts", "detail_blue_antenna_large.png");
         my.sprite.LeftAntenna.flipX = true;
+        
 
         this.SKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.P);
         let FKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+        
         //event input: dimple smile
         FKey.on('down', (key, event) => {
             my.sprite.SMouth.visible = false;
@@ -83,17 +87,38 @@ class Monster extends Phaser.Scene {
             my.sprite.FMouth.visible = false;
         });
 
+        this.DKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.AKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     }
 
     update() {
-        let AKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.keyCodes.A);    // create an alias to this.my for readability
-        let DKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.keyCodes.D);
+        let my = this.my;    // create an alias to this.my for readability
+        if (this.DKey.isDown){     //pulling input: peace hand
+           my.sprite.body.x += 3;
+           my.sprite.Eye.x += 3;
+           my.sprite.SMouth.x += 3;
+           my.sprite.FMouth.x += 3;
+           my.sprite.LeftArm.x += 3;
+           my.sprite.RightArm.x += 3;
+           my.sprite.LeftLeg.x += 3;
+           my.sprite.RightLeg.x += 3;
+           my.sprite.RightAntenna.x += 3;
+           my.sprite.LeftAntenna.x += 3;
 
-        while (AKey = 'down') {
-            bodyX += 10;
-        }
+       }
+       else if (this.AKey.isDown) {
+        my.sprite.body.x -= 3;
+        my.sprite.Eye.x -= 3;
+        my.sprite.SMouth.x -= 3;
+        my.sprite.FMouth.x -= 3;
+        my.sprite.LeftArm.x -= 3;
+        my.sprite.RightArm.x -= 3;
+        my.sprite.LeftLeg.x -= 3;
+        my.sprite.RightLeg.x -= 3;
+        my.sprite.RightAntenna.x -= 3;
+        my.sprite.LeftAntenna.x -= 3;
 
-       
+       }
     }
 
 }
